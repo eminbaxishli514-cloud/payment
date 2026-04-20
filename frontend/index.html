@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SplitPay AZ — Restaurant Bill Splitter</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div class="hero-copy">
+        <p class="eyebrow">Azerbaijan restaurant payments</p>
+        <h1>SplitPay AZ</h1>
+        <p class="hero-text">A smarter way to split restaurant bills by table, customer, and order. Generate payment QR codes instantly and keep service fast.</p>
+      </div>
+      <div class="header-right">
+        <div class="logo">
+          <img src="https://via.placeholder.com/80x80?text=Logo" alt="SplitPay AZ Logo" />
+        </div>
+        <a href="/config.html" class="button button-tertiary">Setup</a>
+        <div class="status-frame">
+          <span class="status-label">System status</span>
+          <div class="status-box" id="statusBox">Ready</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="grid-layout">
+      <article class="panel card" id="credentialsPanel">
+        <div class="panel-head"><h2>Bank Credentials</h2><span>Authenticate via ABB test environment</span></div>
+        <p>Enter your ABB credentials to retrieve a token and submit payment batches.</p>
+        <label class="field-group">Username<input id="username" type="text" placeholder="ABB test username" /></label>
+        <label class="field-group">Password<input id="password" type="password" placeholder="ABB test password" /></label>
+        <button class="button button-primary" id="btnGetToken">Get Token</button>
+        <pre id="tokenDisplay" class="token-output">No token yet.</pre>
+      </article>
+
+      <article class="panel card" id="tablePanel">
+        <div class="panel-head"><h2>Table Management</h2><span>Select a table to manage orders</span></div>
+        <p>Click on a table to load its details.</p>
+        <div id="tableGrid" class="table-grid"></div>
+      </article>
+
+      <article class="panel card" id="customerPanel">
+        <div class="panel-head"><h2>Customers</h2><span>Track who ordered what</span></div>
+        <label class="field-group">Name<input id="customerName" type="text" placeholder="Aysel" /></label>
+        <button class="button button-primary" id="btnAddCustomer">Add Customer</button>
+        <div id="customerList" class="list-box"></div>
+      </article>
+
+      <article class="panel card" id="itemPanel">
+        <div class="panel-head"><h2>Order Items</h2><span>Select from menu and assign to customers</span></div>
+        <label class="field-group">Select Item<select id="itemSelect"></select></label>
+        <label class="field-group">Assign To<select id="itemCustomer"></select></label>
+        <button class="button button-primary" id="btnAddItem">Add Order Item</button>
+        <div id="orderItems" class="list-box"></div>
+      </article>
+
+      <article class="panel card" id="summaryPanel">
+        <div class="panel-head"><h2>Table Summary</h2><span>Review totals before generating payment links</span></div>
+        <div id="tableSummary" class="summary-panel"></div>
+        <div class="action-row">
+          <button class="button button-secondary" id="btnGenerateLinks">Generate Payment QR Links</button>
+        </div>
+        <div class="field-group">
+          <label>Merchant Account</label>
+          <input id="merchantAccount" type="text" placeholder="AZXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX" />
+        </div>
+        <div class="action-row">
+          <button class="button button-primary" id="btnSubmitToBank">Submit Payment to ABB</button>
+          <button class="button button-tertiary" id="btnSubmitToBankOtp">Submit with OTP</button>
+        </div>
+      </article>
+
+      <article class="panel card full-width" id="paymentLinksPanel">
+        <div class="panel-head"><h2>Customer Payment Links</h2><span>Easily share payment QR codes with each guest.</span></div>
+        <div id="paymentLinks" class="link-grid"></div>
+      </article>
+    </section>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
